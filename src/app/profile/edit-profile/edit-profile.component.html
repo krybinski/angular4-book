@@ -1,0 +1,34 @@
+<div class="col-md-12" *ngIf="user">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Edit Profile
+    </div>
+    <div class="panel-body">
+      <form (ngSubmit)="editProfile()">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            class="form-control"
+            [(ngModel)]="user.name"
+            [ngModelOptions]="{standalone:true}">
+        </div>
+        <div class="form-group">
+          <label for="email">Your email</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            class="form-control"
+            [(ngModel)]="user.email"
+            [ngModelOptions]="{standalone:true}">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
