@@ -18,18 +18,42 @@ export class AuthService {
       .toPromise()
       .then(res => res.json())
       .then((res) => {
-        const token = res.token;
-        const user = res.user.data;
-
-        const userData = new UserData(token, user);
+        const userData = new UserData(res.token, res.user);
         return userData;
       });
+  }
+
+  login(email: string, password: string): Promise<UserData> {
+    return this.http.post(`${CONFIG.API_URL}/login`, { email, password })
+      .toPromise()
+      .then(res => res.json())
+      .then((res) => {
+        const userData = new UserData(res.token, res.user);
+        return userData;
+      });
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/auth/login']);
   }
 
   logUserIn(userData: UserData): void {
     localStorage.setItem('token', userData.token);
     localStorage.setItem('user', JSON.stringify(userData.user));
     this.router.navigate(['/dashboard']);
+  }
+
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+
+    if (token && user) {
+      return true;
+    }
+
+    return false;
   }
 
 }

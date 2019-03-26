@@ -3,5 +3,5 @@ export interface User {
   name: string;
   email: string;
   avatar: string;
-  joined: string;
+  is_active: boolean;
 }
