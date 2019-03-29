@@ -1,1 +1,29 @@
-<h1 class="text-center">Welcome to your dashboard!</h1>
+<h1 class="text-center">
+    Welcome to your dashboard!
+</h1>
+
+<div *ngIf="data">
+    <div *ngFor="let joke of data">
+        <app-joke [joke]="joke"></app-joke>
+    </div>
+
+    <br />
+
+    <button
+        class="btn btn-default btn-lg"
+        [disabled]="!data.prev_page_url"
+        (click)="getPreviousJokes()">
+        Previous page
+    </button>
+    <button
+        class="btn btn-default btn-lg pull-right"
+        [disabled]="!data.next_page_url"
+        (click)="getNextJokes()">
+        Next page
+    </button>
+
+    <br />
+    <br />
+    <br />
+    <br />
+</div>

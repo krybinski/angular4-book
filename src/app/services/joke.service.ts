@@ -27,4 +27,13 @@ export class JokeService {
       .then(res => res.json());
   }
 
+  getAllJokes(endPoint = null) {
+    const url = endPoint ? endPoint : `${CONFIG.API_URL}/jokes`;
+    const options = new RequestOptions({ headers: this.headers });
+
+    return this.http.get(url, options)
+        .toPromise()
+        .then(res => res.json());
+  }
+
 }

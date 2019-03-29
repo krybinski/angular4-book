@@ -28,6 +28,7 @@ import { JokeService } from './services/joke.service';
 import { PrettyDatePipe } from './pipes/pretty-date.pipe';
 import { FollowComponent } from './profile/follow/follow.component';
 import { CreateJokeComponent } from './create-joke/create-joke.component';
+import { JokeComponent } from './joke/joke.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CreateJokeComponent } from './create-joke/create-joke.component';
     WallComponent,
     EditProfileComponent,
     FollowComponent,
-    CreateJokeComponent
+    CreateJokeComponent,
+    JokeComponent
   ],
   imports: [
     BrowserModule,
