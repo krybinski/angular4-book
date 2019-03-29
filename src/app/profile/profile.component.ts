@@ -26,10 +26,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params) => {
       this.id = +params['id'];
+      this.userService.getUserById(this.id)
+        .then(user => this.user = user);
     });
-
-    this.userService.getUserById(this.id)
-      .then(user => this.user = user);
   }
 
   isAuthUserProfile(): boolean {

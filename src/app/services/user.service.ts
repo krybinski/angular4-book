@@ -46,4 +46,13 @@ export class UserService {
       });
   }
 
+  getUserWall(id: number) {
+    const url = `${CONFIG.API_URL}/profile/${id}/wall`;
+    const options = new RequestOptions({ headers: this.headers });
+
+    return this.http.get(url, options)
+        .toPromise()
+        .then(res => res.json());
+  }
+
 }

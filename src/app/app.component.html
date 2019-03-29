@@ -10,6 +10,12 @@
       <!-- Left side of navbar -->
       <ul class="nav navbar-nav">
         <li *ngIf="isLoggedIn() && user">
+          <a [routerLink]="['user/profile', 1]">User 1 Profile</a>
+        </li>
+        <li *ngIf="isLoggedIn() && user">
+          <a [routerLink]="['user/profile', 2]">User 2 Profile</a>
+        </li>
+        <li *ngIf="isLoggedIn() && user">
           <a [routerLink]="['user/profile', user.id]">My profile</a>
         </li>
       </ul>

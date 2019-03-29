@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -23,9 +23,11 @@ import { AuthService } from './services/auth.service';
 import { NotifyService } from './services/notify.service';
 import { UserService } from './services/user.service';
 import { FollowService } from './services/follow.service';
+import { JokeService } from './services/joke.service';
 
 import { PrettyDatePipe } from './pipes/pretty-date.pipe';
 import { FollowComponent } from './profile/follow/follow.component';
+import { CreateJokeComponent } from './create-joke/create-joke.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +40,13 @@ import { FollowComponent } from './profile/follow/follow.component';
     PrettyDatePipe,
     WallComponent,
     EditProfileComponent,
-    FollowComponent
+    FollowComponent,
+    CreateJokeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
     NgProgressModule.forRoot()
@@ -53,7 +57,8 @@ import { FollowComponent } from './profile/follow/follow.component';
     AuthedGuard,
     NotifyService,
     UserService,
-    FollowService
+    FollowService,
+    JokeService
   ],
   bootstrap: [AppComponent]
 })

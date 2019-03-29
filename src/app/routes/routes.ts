@@ -7,6 +7,7 @@ import { EditProfileComponent } from '../profile/edit-profile/edit-profile.compo
 
 import { AuthGuard } from '../guards/auth.guard';
 import { AuthedGuard } from '../guards/authed.guard';
+import {CreateJokeComponent} from '../create-joke/create-joke.component';
 
 export const ROUTES = [
   { path: 'auth/register', component: RegisterComponent, canActivate: [AuthedGuard] },
@@ -20,5 +21,6 @@ export const ROUTES = [
       { path: '', component: WallComponent },
       { path: 'edit', component: EditProfileComponent }
     ]
-  }
+  },
+  { path: 'create/joke', component: CreateJokeComponent}
 ];
