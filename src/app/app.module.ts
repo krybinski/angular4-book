@@ -22,8 +22,10 @@ import { AuthedGuard } from './guards/authed.guard';
 import { AuthService } from './services/auth.service';
 import { NotifyService } from './services/notify.service';
 import { UserService } from './services/user.service';
+import { FollowService } from './services/follow.service';
 
 import { PrettyDatePipe } from './pipes/pretty-date.pipe';
+import { FollowComponent } from './profile/follow/follow.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { PrettyDatePipe } from './pipes/pretty-date.pipe';
     ProfileComponent,
     PrettyDatePipe,
     WallComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    FollowComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { PrettyDatePipe } from './pipes/pretty-date.pipe';
     AuthGuard,
     AuthedGuard,
     NotifyService,
-    UserService
+    UserService,
+    FollowService
   ],
   bootstrap: [AppComponent]
 })
