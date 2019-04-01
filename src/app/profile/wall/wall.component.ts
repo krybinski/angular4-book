@@ -29,4 +29,10 @@ export class WallComponent implements OnInit {
       .then(res => this.jokes = res.json());
   }
 
+  jokeDeleted(jokeId) {
+    const joke = this.jokes.find(j => j.id === jokeId);
+    const jokeIndex = this.jokes.indexOf(joke);
+    this.jokes.splice(jokeIndex, 1);
+  }
+
 }
