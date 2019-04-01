@@ -19,12 +19,18 @@ export class AuthService {
   ) {}
 
   register(name: string, email: string, password: string): Promise<UserData> {
+    this.bar.start();
     return this.http.post(`${CONFIG.API_URL}/register`, { name, email, password })
       .toPromise()
       .then(res => res.json())
       .then((res) => {
         const userData = new UserData(res.token, res.user);
+        this.bar.complete();
         return userData;
+      })
+      .catch((err) => {
+        this.bar.complete();
+        return Promise.reject(err.json());
       });
   }
 
@@ -37,6 +43,10 @@ export class AuthService {
         const userData = new UserData(res.token, res.user);
         this.bar.complete();
         return userData;
+      })
+      .catch((err) => {
+        this.bar.complete();
+        return Promise.reject((err.json()));
       });
   }
 

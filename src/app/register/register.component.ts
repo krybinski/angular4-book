@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { NotifyService } from '../services/notify.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,8 @@ import { NgForm } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private notifyService: NotifyService
   ) {}
 
   ngOnInit() {
@@ -19,7 +21,11 @@ export class RegisterComponent implements OnInit {
   onSubmit(form: NgForm) {
     const { name, email, password } = form.value;
     this.authService.register(name, email, password)
-      .then(userData => this.authService.logUserIn(userData));
+      .then(userData => this.authService.logUserIn(userData))
+      .catch((err) => {
+        console.log(err.message);
+        this.notifyService.notify('Register error', 'error');
+      });
   }
 
 }

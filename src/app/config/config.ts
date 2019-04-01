@@ -1,3 +1,3 @@
 export const CONFIG = {
-  API_URL: `http://laravel-jwt-auth-example.devel`
+  API_URL: `http://api-for-ng-book.devel`
 };

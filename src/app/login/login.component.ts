@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { NotifyService } from '../services/notify.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private notifyService: NotifyService
   ) {}
 
   ngOnInit() {
@@ -19,7 +21,11 @@ export class LoginComponent implements OnInit {
   onSubmit(form: NgForm) {
     const { email, password } = form.value;
     this.authService.login(email, password)
-      .then(userData => this.authService.logUserIn(userData));
+      .then(userData => this.authService.logUserIn(userData))
+      .catch((err) => {
+        console.log(err.message);
+        this.notifyService.notify('Authentication error', 'error');
+      });
   }
 
 }
